@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ku">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Xewn - Cîhana Mangayên Kurdî</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+        :root {
+            --primary-color: #e50914;
+            --background-color: #141414;
+            --text-color: #ffffff;
+            --header-bg: rgba(0, 0, 0, 0.8);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--header-bg);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        header:hover {
+            background-color: rgba(0, 0, 0, 1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--header-bg);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+            z-index: 1;
+            border-radius: 4px;
+            right: 0;
+            top: 100%;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .dropdown-content a {
+            color: var(--text-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            padding-top: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-content {
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            transform: translateY(20px);
+            display: none;
+        }
+
+        .page-content.active {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .manga-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .manga-item {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .manga-item:hover {
+            transform: scale(1.05);
+        }
+
+        .manga-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .manga-item h3 {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: var(--header-bg);
+            margin-top: 2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                </svg>
+                Manga Xewn
+            </div>
+            <ul>
+                <li><a href="#home">Mal</a></li>
+                <li class="dropdown">
+                    <a href="#categories">Kategorî</a>
+                    <div class="dropdown-content">
+                        <a href="#action">Çalakî</a>
+                        <a href="#romance">Evîndarî</a>
+                        <a href="#comedy">Komedî</a>
+                        <a href="#drama">Drama</a>
+                        <a href="#fantasy">Fantazî</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#genres">Cûre</a>
+                    <div class="dropdown-content">
+                        <a href="#shounen">Shounen</a>
+                        <a href="#shoujo">Shoujo</a>
+                        <a href="#seinen">Seinen</a>
+                        <a href="#josei">Josei</a>
+                    </div>
+                </li>
+                <li><a href="#new-releases">Weşanên Nû</a></li>
+                <li><a href="#top-rated">Herî Bilind Nirxkirî</a></li>
+                <li><a href="#search">Lêgerîn</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="page-content active">
+            <h1 class="section-title">Bi xêr hatî Manga Xewn</h1>
+            <div class="manga-grid">
+                <!-- Popüler mangalar buraya eklenecek -->
+            </div>
+        </section>
+
+        <section id="categories" class="page-content">
+            <h2 class="section-title">Kategorî</h2>
+            <div class="manga-grid">
+                <!-- Kategoriler buraya eklenecek -->
+            </div>
+        </section>
+
+        <section id="genres" class="page-content">
+            <h2 class="section-title">Cûre</h2>
+            <div class="manga-grid">
+                <!-- Türler buraya eklenecek -->
+            </div>
+        </section>
+
+        <section id="new-releases" class="page-content">
+            <h2 class="section-title">Weşanên Nû</h2>
+            <div class="manga-grid">
+                <!-- Yeni yayınlar buraya eklenecek -->
+            </div>
+        </section>
+
+                <section id="top-rated" class="page-content">
+            <h2 class="section-title">Herî Bilind Nirxkirî</h2>
+            <div class="manga-grid">
+                <!-- En çok oy alan mangalar buraya eklenecek -->
+            </div>
+        </section>
+
+        <section id="search" class="page-content">
+            <h2 class="section-title">Lêgerîn</h2>
+            <input type="text" id="search-input" placeholder="Manga bigerin...">
+            <div id="search-results" class="manga-grid">
+                <!-- Arama sonuçları buraya eklenecek -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Manga Xewn. Hemû maf parastî ne.</p>
+    </footer>
+
+    <script>
+        // Sayfa geçişleri için geliştirilmiş router
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                switchPage(targetId);
+            });
+        });
+
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-content').forEach(section => {
+                section.classList.remove('active');
+            });
+            const targetSection = document.getElementById(pageId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Dropdown menüler için tıklama olayı
+        document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+            dropdownToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.nextElementSibling.classList.toggle('show');
+            });
+        });
+
+        // Sayfa dışına tıklandığında dropdown'ları kapat
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown > a')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+        // Örnek manga verisi
+        const mangaData = [
+            { id: 1, title: "Manga 1", image: "https://via.placeholder.com/200x300", category: "action" },
+            { id: 2, title: "Manga 2", image: "https://via.placeholder.com/200x300", category: "romance" },
+            { id: 3, title: "Manga 3", image: "https://via.placeholder.com/200x300", category: "comedy" },
+            // Daha fazla manga eklenebilir
+        ];
+
+        // Manga kartlarını oluşturan fonksiyon
+        function createMangaCard(manga) {
+            return `
+                <div class="manga-item">
+                    <img src="${manga.image}" alt="${manga.title}">
+                    <h3>${manga.title}</h3>
+                </div>
+            `;
+        }
+
+        // Sayfaları manga verileriyle doldur
+        function populatePages() {
+            const homeSection = document.querySelector('#home .manga-grid');
+            const categoriesSection = document.querySelector('#categories .manga-grid');
+            
+            homeSection.innerHTML = mangaData.map(createMangaCard).join('');
+            categoriesSection.innerHTML = mangaData.map(createMangaCard).join('');
+        }
+
+        // Sayfa yüklendiğinde manga verilerini yükle
+        window.addEventListener('load', populatePages);
+
+        // Arama işlevselliği
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const filteredManga = mangaData.filter(manga => 
+                manga.title.toLowerCase().includes(searchTerm)
+            );
+            searchResults.innerHTML = filteredManga.map(createMangaCard).join('');
+        });
+    </script>
+</body>
+</html>
